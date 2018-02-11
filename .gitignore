@@ -1,0 +1,7 @@
+# Visual Studio Code stuff
+.vscode/
+
+# Exclude typescript generated files
+dist/
+
+node_modules/
