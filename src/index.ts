@@ -6,18 +6,37 @@ import * as path from "path";
 import * as bodyParser from "body-parser";
 import * as session from "express-session";
 import { Sequelize } from "sequelize-typescript";
+import * as passport from "passport";
+
+import { User } from "./models/User";
 
 export const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(session({ secret: config.secret, resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Loads database
 const sequelize = new Sequelize({
     ...config.mysql,
     dialect: "mysql",
     modelPaths: [__dirname + "/models"],
+});
+
+// Passport settings
+passport.serializeUser((user: any, done) => {
+    done(null, user.id);
+});
+
+passport.deserializeUser(async (user: any, done) => {
+    try {
+        await User.findById(user.id);
+        done(null, user);
+    } catch (err) {
+        done(err);
+    }
 });
 
 // Loads middlewares
