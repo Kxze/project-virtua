@@ -1,0 +1,31 @@
+{
+   "name": "virtua",
+   "version": "0.0.1",
+   "description": "Awesome project developed with TypeORM.",
+   "devDependencies": {
+      "@types/express": "^4.11.1",
+      "@types/jsonwebtoken": "^7.2.6",
+      "@types/node": "^9.6.5",
+      "@types/passport": "^0.4.4",
+      "@types/passport-jwt": "^3.0.1",
+      "@types/passport-twitter": "^1.0.34",
+      "concurrently": "^3.5.1",
+      "nodemon": "^1.17.3",
+      "typescript": "2.5.2"
+   },
+   "dependencies": {
+      "body-parser": "^1.18.2",
+      "express": "^4.16.3",
+      "jsonwebtoken": "^8.2.1",
+      "mysql": "^2.14.1",
+      "passport": "^0.4.0",
+      "passport-jwt": "^4.0.0",
+      "passport-twitter": "^1.0.4",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.1.21"
+   },
+   "scripts": {
+      "start": "tsc && node dist",
+      "dev": "concurrently \"tsc -w\" \"nodemon dist\""
+   }
+}
