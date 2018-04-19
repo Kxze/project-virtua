@@ -6,6 +6,11 @@ export class Profile extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
+    @Column({
+        unique: true,
+    })
+    username: string;
+
     @Column()
     name: string;
 

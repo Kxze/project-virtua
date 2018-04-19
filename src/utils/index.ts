@@ -13,12 +13,16 @@ export const loadConfig = (): Config => {
 }
 
 export const loadRoutes = (routeParams: RouteParams): void => {
-    const routesPath = path.join(__dirname, "routes");
+    const routesPath = path.join(__dirname, "../routes");
     const files = fs.readdirSync(routesPath);
 
-    files.forEach((file: string) => {
-        const filePath = path.join(__dirname, "routes", file);
-        require(filePath)(routeParams);
+    files
+        .filter((file: string) => file.endsWith(".js"))
+        .forEach((file: string) => {
+        const filePath = path.join(routesPath, file);
+        console.log(`Loading route ${file}...`);
+        require(filePath).default(routeParams);
+        console.log(`\rLoading route ${file}... \x1b[42mOK\x1b[0m`)
     });
 }
 

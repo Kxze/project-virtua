@@ -15,9 +15,9 @@ export default ({ app, db, config }: RouteParams) => {
                 callback(null, user);
             } else {
                 const newUser = new User();
-                user.twitterId = profile.id;
+                newUser.twitterId = profile.id;
                 await newUser.save();
-                callback(null, user);
+                callback(null, newUser);
             }
         } catch (err) {
             callback(err.message, null);

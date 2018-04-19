@@ -1,5 +1,6 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from "typeorm";
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToMany } from "typeorm";
 import { User } from "./User";
+import { Listen } from "./index";
 
 @Entity()
 export class Song extends BaseEntity {
@@ -10,6 +11,7 @@ export class Song extends BaseEntity {
     @Column()
     name: string;
 
-    @ManyToMany(type => User)
-    listeners: User[];
+    @OneToMany(type => Listen, listen => listen.song)
+    listens: Listen[];
+
 }
